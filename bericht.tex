@@ -1,11 +1,3 @@
-%&bericht
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Descr:       Vorlage für Berichte der DHBW-Karlsruhe
-%% Author:      Prof. Dr. Jürgen Vollmer, juergen.vollmer@dhbw-karlsruhe.de
-%% $Id: bericht.tex,v 1.25 2020/03/13 15:07:45 vollmer Exp $
-%%  -*- coding: utf-8 -*-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[
    ngerman          % neue deutsche Rechtschreibung
@@ -28,13 +20,9 @@
 
 \usepackage{bericht}
 \usepackage[graphicx]{realboxes}
-%\usepackage[landscape]{geometry}
+
 \usepackage{lscape}
 
-%% ACHTUNG, wenn man eine eigene Formatdatei (bericht.fmt) benutzt, werden Änderungen an bericht.sty
-%% erst wirksam, wenn die Format-Datei neu erzeugt wurde!!!
-%% Genauer alle Änderungen, die textuell vor der nächsten Zeile ".... endofdump...." stehen
-%% werden erst wirksam, wenn die Formatdatei neu erzeugt wurde
 \csname endofdump\endcsname
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,8 +38,6 @@
 \newcommand{\FirmenStadt}{Waldkirch}
 \newcommand{\FirmenLogoDeckblatt}{\fbox{\includegraphics[width=3cm]{images/SICK_Logo_Claim}}}
 
-% Falls es kein Firmenlogo gibt:
-%  \newcommand{\FirmenLogoDeckblatt}{}
 
 \newcommand{\BetreuerFirma}{Manfred Haberer}
 \newcommand{\BetreuerDHBW}{Prof. Dr. Jürgen Vollmer}
@@ -60,13 +46,12 @@
 
 % Wird auf dem Deckblatt und in der Erklärung benutzt:
 \newcommand{\Was}{Projektarbeit}
-%\newcommand{\Was}{Projektrarbeit}
-%\newcommand{\Was}{Studienarbeit}
-%\newcommand{\Was}{Bachleorarbeit}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\Titel}{Aufbau und Inbetriebnahme einer virtuellen Applikationsszene für AGVs in Unity}
+\newcommand{\Titel}{Aufbau eines virtuellen Umweltmodelles für die Entwicklungen von 
+Algorithmen für die sichere Personenerkennung in Automated Guided Vehicle Appikatonen}
 \newcommand{\AbgabeDatum}{24. September 2023}
 
 \newcommand{\Dauer}{12 Wochen}
@@ -145,11 +130,11 @@ Gutachter der Studienakademie	  & \BetreuerDHBW		    \\
 \setcounter{savepage}{\value{page}}
 \pagenumbering{arabic}
 
-%\include{input/einleitung}
-%\include{input/zeitplan}
-%\include{input/Riskomodelle}
-%\include{input/implementierung}
-%\include{input/schlussbetrachtung}
+\include{input/einleitung}
+\include{input/aufgabenstellung}
+\include{input/konzept}
+\include{input/implementierung}
+\include{input/ergebnis}
 \include{input/notizen}
 %\include{input/kapitel1}
 %\include{input/kapitel2}
