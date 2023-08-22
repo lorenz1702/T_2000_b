@@ -1,5 +1,96 @@
-\chapter{Aufgabenstellung}
-\section{Interesse der Firma}
-\section{Generelle Aufgabe}
+\chapter{Planung und Kontrolle}
+
+
 \section{Zeitmanagament}
+%Einführung zur Zeitplanung
+%1.1 Bedeutung einer strukturierten Zeitplanung
+%1.2 Zielsetzung des Kapitels
+
+\subsection{Meilensteinen und Etappen}
+%2.1 Klare Definition von Forschungszielen und Teilzielen
+%Erste Meilenstein Prio 1
+%Der erste Meilenstein ist es die Schnittstelle über den gRPC Server und Client soll in beide richtungen Daten übertragen.
+%Die Thales Sensordaten von 4 Sensoren müssen über den gRPC Server vom Client abgefragt werden können. Zur Aufnahme Zeit aber mindestens alle 40ms. 
+Innerhalb ersten Meilensteins liegt der Fokus auf der Umsetzung einer funktionsfähigen Schnittstelle zwischen dem gRPC Server und Client, um Daten in beiden Richtungen zu übertragen. \\
+Ein zentrales Ziel ist es, Thales Sensordaten von insgesamt 4 Sensoren über den gRPC Server vom Client abrufen zu können. Die Datenabfrage sollte in der Lage sein, mit einer Aufnahmefrequenz von mindestens alle 40 Millisekunden durchgeführt zu werden.\\
+%Über den gRPC Server sollen auch andere Parameter übertragen werden wie Lenkwinkel oder Geschwindigkeit einer im späteren verlauf erstellten AGVs.
+Zusätzlich zu den Sensordaten sollen auch andere Parameter über den gRPC Server übertragen werden, wie beispielsweise der Lenkwinkel oder die Geschwindigkeit eines zukünftig erstellten AGVs. Dieser Meilenstein bildet einen wesentlichen Schritt, um die grundlegende Funktionalität des Projektes zu etablieren und legt den Grundstein für die weitere Entwicklung im Projektverlauf.\\
+%Zweiter Meilenstein Prio 2
+%Der zweite Meilenstein soll die Umsetzung der AGVs enthalten. Dazu muss die Fahrphysik erstellt werden. Es sollten mehrer Arten von Agvs entwickelt werden aber mindestens eins. Zunächsten sollen ein AGVs nach einem normalen Auto erstellt werden dann ein Gabelstapler also ein dreiRad und dannach eine Panzerrolle in dieser Reinfolge.
+Der Meilenstein umfasst die Erstellung der Fahrphysik für die AGVs. Dies beinhaltet die Realisierung von realistischen Bewegungsabläufen und Steuerungsmechanismen, die den Charakter der jeweiligen AGV-Typen authentisch wiedergeben.\\
+Innerhalb dieses Meilensteins ist die Entwicklung mehrerer Arten von AGVs geplant, wobei mindestens eine Variante umgesetzt wird. In der Anfangsphase werden verschiedene AGVs entworfen, darunter ein AGV, das auf einem herkömmlichen Auto basiert, gefolgt von einem dreirädrigen Gabelstapler und schließlich einer Panzerrolle.\\
+%Die Steuerung oder Fahranweisung soll über ein Script in Unity laufen welches sagt geschwindigkeit/Beschleunigung gibt und Lenkeinschlag der steuerachse
+Die Steuerung und Fahranweisung der AGVs wird über ein Script in der Unity-Umgebung gesteuert. Dieses Script gibt die Geschwindigkeit, Beschleunigung und den Lenkeinschlag der Steuerachse vor.\\
+
+Die erfolgreiche Umsetzung dieses Meilensteins wird die Basis für die funktionale und realistische Integration der AGVs in das Forschungsprojekt legen. Durch die Entwicklungsarbeit im zweiten Meilenstein wird die Grundlage für weiterführende Tests und Analysen der AGVs geschaffen, die zur Erreichung der gesamten Projekts beitragen.\\
+
+%Dritter Meilenstein Prio 3 Dritter Meilenstein: Erfassung des AGV-Bremswegs als Polygonzug
+%Im Dritten Meilenstein solle ein Polygonzug erhalten werden der den Bremsweg des AGVs wiederspielt. Er kann dierkt an erhalten werden jedoch muss noch überprüft werden ob es möglich ist ihn zu übertragen oder ob einfach die die länge des bremsschlauchs und darus mit dem lenkeinschlag der Bremsweg darstellt wird.
+Innerhalb dieses Meilensteins ist das Hauptziel die Erstellung eines Polygonzugs, der den Bremsweg des AGVs abbildet. Dieser Polygonzug soll den Verlauf des Bremsvorgangs in einer geometrischen Darstellung wiedergeben.\newline
+Nach der Erstellung des Polygonzugs muss überprüft 
+werden, ob dieser direkt auf das AGV-Modell übertragen werden kann. Es ist von Bedeutung zu ermitteln, ob die Daten des Polygonzugs in das Simulationssystem eingeführt werden können, um eine korrekte Darstellung des Bremsverhaltens zu ermöglichen.\newline
+Falls eine direkte Übertragung des Polygonzugs nicht möglich ist, wird eine alternative Methode in Betracht gezogen. Hierbei wird die Länge des Bremsschlauchs in Verbindung mit dem Lenkeinschlag genutzt, um den Bremsweg auf eine plausible Weise darzustellen.\newline
+Die erfolgreiche Erfassung des AGV-Bremswegs als Polygonzug oder über alternative Darstellungsformen wird eine wichtige Grundlage für die Simulation des Bremsverhaltens in späteren Forschungsphasen bilden. Dieser Meilenstein trägt dazu bei, das Verhalten des AGVs unter verschiedenen Bedingungen besser zu verstehen und die Gesamtfunktionalität des Modells zu verbessern.\\
+
+%Der vierte Meilenstein soll dafür sorgen das das Agv durch ein Siganl vom gRPC Client abbremst
+Im Rahmen dieses Meilensteins wird das Hauptziel verfolgt, die Signalübertragung vom gRPC-Client zum AGV zu implementieren. Das Signal soll die Abbremsung des AGVs auslösen, wenn es empfangen wird.\\
+Es ist von entscheidender Bedeutung, die Steuerungsfunktion im AGV zu konfigurieren, damit sie auf das empfangene Signal reagiert und die notwendigen Maßnahmen zur Abbremsung einleitet.\\
+Die erfolgreiche Umsetzung dieses Meilensteins wird die Fähigkeit des AGVs zur externen Steuerung und zur Initiierung einer Abbremsung über das gRPC-Client-Signal demonstrieren. Diese Funktionalität kann im weiteren Verlauf der Forschungsarbeit dazu verwendet werden, verschiedene Szenarien und Anwendungen zu testen, bei denen eine externe Steuerung des AGVs erforderlich ist.\\
+%2.2 Identifikation von wichtigen Meilensteinen im Forschungsprozess
+
+%2.3 Unterteilung des Projekts in überschaubare Etappen
+\subsection{Zeitplan}
+%Erstellung eines Zeitplans
+%3.1 Festlegung von Start- und Enddatum des Projekts
+Das Projekt startet am 3. Juli und die Abgabe der schriftlichen Projektarbeit ist am 21. September. Nach der Berücksichtungen der Abwesenheiten umfasst das Projekt 35 Arbeitstage.
+
+%3.2 Strukturierung des Zeitplans nach Etappen und Meilensteinen
+In den ersten fünf Tagen des Projekts steht die Vorbereitung und Planung im Vordergrund. Hierbei werden die genauen Anforderungen und Ziele des Projekts geklärt. Es erfolgt eine detaillierte Aufschlüsselung der Arbeitsschritte sowie die Definition der benötigten Ressourcen.\\
+Vom sechsten bis zum fünfzehnten Tag wird der erste Meilenstein erreicht - die Implementierung der gRPC-Server-Client-Schnittstelle. Ziel ist es, die bidirektionale Datenübertragung zwischen dem Server und Client zu ermöglichen.\\
+Vom sechzehnten bis zum einundzwantigsten Tag liegt der Fokus auf dem zweiten Meilenstein, der die Umsetzung der AGVs beinhaltet. Es wird die Fahrphysik für verschiedene AGV-Typen erstellt, beginnend mit einem AGV, das sich wie ein herkömmliches Auto verhält. Die Bewegungsabläufe und Steuerung werden getestet und optimiert.\\
+Vom zweiundzwanzigsten bis zum sechsundzwanzigsten Tag wird die Umsetzung der AGVs fortgesetzt. Ein Gabelstapler-AGV wird entwickelt, um dreirädrige Bewegungen zu simulieren. Parallel dazu wird die Vorbereitung für die Umsetzung des dritten AGV-Typs, einer Panzerrolle, getroffen.\\
+Vom siebenundzwanzigsten bis zum neunundzwanzigsten Tag wird der dritte Meilenstein erreicht. Ein Polygonzug wird erstellt, um den Bremsweg des AGVs darzustellen. Die Übertragbarkeit dieser Daten auf das Modell wird geprüft, alternativ wird die Berechnung des Bremswegs anhand des Bremsschlauchs in Betracht gezogen.\\
+Die letzten beiden Tage, der dreißigste und der zweidreißigste Tag, widmen sich dem vierten Meilenstein. Hierbei steht die Implementierung der externen Abbremsung des AGVs durch ein Signal vom gRPC-Client im Fokus. Die Steuerungsfunktion im AGV wird entsprechend konfiguriert und getestet, um sicherzustellen, dass das AGV zuverlässig auf das Signal reagiert.\\
+%3.3 Berücksichtigung von Pufferzeiten für unvorhergesehene Verzögerungen
+
+%Gantt-Diagramme und Visualisierung
+%4.1 Verwendung von Gantt-Diagrammen zur grafischen Darstellung des Zeitplans
+%4.2 Einfache Veranschaulichung von Aufgaben, Dauer und zeitlichen Abhängigkeiten
+
+%Abhängigkeiten und Priorisierung
+%6.1 Erkennen von Aufgabenabhängigkeiten und Verknüpfungen
+%6.2 Priorisierung von Aufgaben basierend auf ihrer Relevanz und Abhängigkeit
+
+%Überwachung und Anpassung des Zeitplans
+%7.1 Regelmäßige Überprüfung des Fortschritts im Vergleich zum Zeitplan
+%7.2 Identifizierung von Abweichungen und Verzögerungen
+%7.3 Anpassung des Zeitplans bei Bedarf unter Berücksichtigung der Gesamtziele
+
+
 \section{Risikoanalyse}
+
+
+%Identifikation von Risiken
+%2.1 Systematische Erfassung möglicher Risiken im Forschungsprozess
+%2.2 Kategorisierung der Risiken (technische, organisatorische, finanzielle etc.)
+%2.3 Einbeziehung von Stakeholdern zur Identifizierung potenzieller Risiken
+
+%Bewertung von Risiken
+%3.1 Einschätzung der Eintrittswahrscheinlichkeit für jeden identifizierten Risikofaktor
+%3.2 Bewertung der Auswirkungen eines Risikos auf das Forschungsprojekt
+%3.3 Kombination von Eintrittswahrscheinlichkeit und Auswirkungen zur Risikobewertung
+
+%Priorisierung von Risiken
+%4.1 Klassifizierung der Risiken nach ihrer Bedeutung (hoch, mittel, niedrig)
+%4.2 Identifikation von kritischen Risiken, die besonders aufmerksam behandelt werden müssen
+
+%Risikobewältigung und -managementstrategien
+%5.1 Vorbeugende Maßnahmen zur Reduzierung der Eintrittswahrscheinlichkeit
+%5.2 Minderungsstrategien zur Verringerung der Auswirkungen von Risiken
+%5.3 Erstellung eines Aktionsplans zur Bewältigung prioritärer Risiken
+
+%Kontinuierliches Monitoring und Anpassung
+%6.1 Regelmäßige Überwachung der identifizierten Risiken
+%6.2 Anpassung der Managementstrategien basierend auf neuen Erkenntnissen
+%6.3 Berücksichtigung von Veränderungen im Forschungsprozess und der Umgebung
+

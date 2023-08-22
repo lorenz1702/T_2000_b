@@ -11,6 +11,8 @@ Reallocating 'name_of_file' (item size: 1) to 21 items.
 A level-1 auxiliary file: input/einleitung.aux
 Reallocating 'name_of_file' (item size: 1) to 27 items.
 A level-1 auxiliary file: input/aufgabenstellung.aux
+Reallocating 'name_of_file' (item size: 1) to 21 items.
+A level-1 auxiliary file: input/grundlagen.aux
 Reallocating 'name_of_file' (item size: 1) to 18 items.
 A level-1 auxiliary file: input/konzept.aux
 Reallocating 'name_of_file' (item size: 1) to 26 items.
@@ -43,7 +45,7 @@ Reallocating 'wiz_functions' (item size: 4) to 9000 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 You've used 1 entry,
             6393 wiz_defined-function locations,
-            1210 strings with 9119 characters,
+            1211 strings with 9139 characters,
 and the built_in function-call counts, 1522 in all, are:
 = -- 72
 > -- 70
