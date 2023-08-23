@@ -56,7 +56,22 @@ Die letzten beiden Tage, der dreißigste und der zweidreißigste Tag, widmen sic
 %Gantt-Diagramme und Visualisierung
 %4.1 Verwendung von Gantt-Diagrammen zur grafischen Darstellung des Zeitplans
 %4.2 Einfache Veranschaulichung von Aufgaben, Dauer und zeitlichen Abhängigkeiten
-
+\begin{landscape}
+    
+    \begin{tabularx}{21cm}{|l|l|l|X|X|X|X|X|X|X|X|X|X|X|X|}
+        \hline
+        \textbf{Aufgabe}                       & \textbf{Anfang} & \textbf{Ende} & \textbf{28}            & \textbf{29}            & \textbf{30}            & \textbf{31}            & \textbf{32}            & \textbf{33}            & \textbf{34}            & \textbf{35}            & \textbf{36}            & \textbf{37}            & \textbf{38}            & \textbf{39}            \\ \hline
+        Planung+ Aufgabe Prio 1                & 12.07           & 14.07         & \cellcolor[HTML]{34CDF9} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+        Aufgabe Prio 2                         & 17.07           & 21.07         &                          & \cellcolor[HTML]{34CDF9} &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          \\ \hline
+        Abwesenheit                            & 24.07           & 01.09         &                          &                          & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} & \cellcolor[HTML]{C0C0C0} &                          &                          &                          &                          \\ \hline
+        Aufgabe Prio 2                         & 04.09           & 08.09         &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{34CDF9} &                          &                          &                          \\ \hline
+        Aufgabe Prio 3                         & 11.09           & 15.09         &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{34CDF9} &                          &                          \\ \hline
+        Aufgabe Prio 4+Doku                    & 18.09           & 29.09         &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{68CBD0} & \cellcolor[HTML]{68CBD0} & \cellcolor[HTML]{68CBD0} \\ \hline
+        Praxisbericht + Kollogium Vorbereitung & 18.09           & 22.09         &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{34FF34} &                          \\ \hline
+        Kollogium                              & 25.09           & 29.09         &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          &                          & \cellcolor[HTML]{FE0000} \\ \hline
+    \end{tabularx}
+    \end{landscape}
+       
 %Abhängigkeiten und Priorisierung
 %6.1 Erkennen von Aufgabenabhängigkeiten und Verknüpfungen
 %6.2 Priorisierung von Aufgaben basierend auf ihrer Relevanz und Abhängigkeit
@@ -69,6 +84,19 @@ Die letzten beiden Tage, der dreißigste und der zweidreißigste Tag, widmen sic
 
 \section{Risikoanalyse}
 
+Im Rahmen des Projekts wurden potenzielle Risiken identifiziert, die während der Umsetzung der Meilensteine und des 35-tägigen Zeitplans auftreten könnten. Diese Risiken wurden analysiert und bewertet, um angemessene Maßnahmen zur Risikobewältigung zu identifizieren.\\
+
+Ein hoch bewertetes Risiko besteht in technischen Herausforderungen bei der Implementierung der gRPC-Server-Client-Schnittstelle (Meilenstein 1). Die Eintrittswahrscheinlichkeit wird als mittel eingestuft, aber die Auswirkungen könnten hoch sein, da dies die Grundlage für die Kommunikation im Projekt bildet. Ähnlich verhält es sich mit dem Risiko unvorhergesehener Schwierigkeiten bei der Signalübertragung für die externe Abbremsung (Meilenstein 4). Hierbei könnte die Eintrittswahrscheinlichkeit mittel sein, aber die Auswirkungen wären hoch, da die externe Steuerung des AGVs beeinträchtigt werden könnte.\\
+
+Die Umsetzung der AGV-Typen (Meilenstein 2) birgt das Risiko von Schwierigkeiten bei der Erstellung der Fahrphysik, da die Eintrittswahrscheinlichkeit als hoch eingeschätzt wird und die Auswirkungen mittel sein könnten. Zudem besteht die Gefahr von zeitlichen Verzögerungen bei der Umsetzung der AGV-Typen, da eine mittlere Eintrittswahrscheinlichkeit und mittlere Auswirkungen gegeben sind.\\
+
+In Bezug auf den dritten Meilenstein, die Erfassung des Bremsweg-Polygonzugs, besteht das Risiko technischer Inkompatibilität bei der Übertragung, obwohl die Eintrittswahrscheinlichkeit niedrig ist, könnten die Auswirkungen mittel sein. Zusätzlich könnte das Risiko bestehen, dass sich die Anforderungen an den Bremsweg ändern, was jedoch als gering eingeschätzt wird.\\
+
+Die mögliche Fehlkommunikation zwischen dem gRPC-Server und dem Client (Meilenstein 1) sowie unerwartete Schwierigkeiten bei der Konfiguration der Steuerungsfunktion für die externe Abbremsung (Meilenstein 4) könnten sich als hohe Risiken mit mittleren Auswirkungen erweisen.\\
+
+Ein weiteres bedeutendes Risiko betrifft die mangelnde Verfügbarkeit von Ressourcen wie Hardware oder Software während des gesamten Projekts. Hierbei wird eine hohe Eintrittswahrscheinlichkeit angenommen, verbunden mit hohen Auswirkungen auf den Projektfortschritt.\\
+
+Die Risikoanalyse zeigt auf, dass eine gründliche Planung und regelmäßige Überwachung der Projektschritte unerlässlich ist, um auf mögliche Risiken rechtzeitig reagieren zu können. Es empfiehlt sich, für jedes identifizierte Risiko geeignete Maßnahmen zur Risikominderung und -bewältigung zu entwickeln.\\
 
 %Identifikation von Risiken
 %2.1 Systematische Erfassung möglicher Risiken im Forschungsprozess
