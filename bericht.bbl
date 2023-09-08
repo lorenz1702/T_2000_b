@@ -16,5 +16,55 @@
   {}
 \endgroup
 
-\datalist[entry]{nty/global//global/global}\enddatalist
+\datalist[entry]{nty/global//global/global}
+  \entry{Bengel.2004}{book}{}
+    \name{author}{1}{}{%
+      {{hash=BG}{%
+         family={Bengel},
+         familyi={B\bibinitperiod},
+         given={G{\"u}nther},
+         giveni={G\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {{Vieweg+Teubner Verlag}}%
+    }
+    \strng{namehash}{BG1}
+    \strng{fullhash}{BG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2004}
+    \field{labeldatesource}{}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Das Buch greift die aktuellen Entwicklungen auf dem Gebiet der Verteilten
+  Systeme auf und erl{\"a}utert die Grundlagen und den Weg bis in die
+  Anwendung. Dabei profitiert der Leser von der klaren Systematik und
+  verst{\"a}ndlichen Darstellung aller Themen. Mit dieser Kenntnis ist der
+  Leser in der Lage, die neuesten Technologien abzusch{\"a}tzen und sie
+  erfolgreich in der Praxis einzuf{\"u}hren. In der 3. Auflage sind
+  insbesondere Abschnitte {\"u}ber Web Services neu hinzugekommen. Es werden in
+  diesem Zusammenhang SOAP, WSDL und UDDI behandelt. Neu aufgenommen wurden
+  auch Message Driven Beans und Java Message Service.%
+    }
+    \verb{doi}
+    \verb 10.1007/978-3-322-80339-9
+    \endverb
+    \field{edition}{3., verbesserte und erweiterte Auflage}
+    \field{isbn}{9783322803399}
+    \field{series}{Springer eBook Collection Computer Science and Engineering}
+    \field{title}{Grundkurs Verteilte Systeme: Grundlagen und Praxis des
+  Client-Server-Computing - Inklusive aktueller Technologien wie Web-Services
+  u. a. - F{\"u}r Studenten und Praktiker}
+    \list{location}{1}{%
+      {Wiesbaden}%
+    }
+    \verb{file}
+    \verb Bengel 2004 - Grundkurs Verteilte Systeme:Attachments/Bengel 2004 - G
+    \verb rundkurs Verteilte Systeme.pdf:application/pdf
+    \endverb
+    \field{year}{2004}
+  \endentry
+\enddatalist
 \endinput
