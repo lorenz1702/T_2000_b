@@ -1,5 +1,13 @@
 \chapter{Implementierung}
 \section{Implementierung der Schnittstelle}
+\section{Umsetzung der Fahrphysik}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=(\textwidth/2)]{images/AGV_Vier_Sensoren.PNG}
+    \caption{AGV Aufbau}
+    \label{fig:Aufbau}
+\end{figure}
+
 %Warum wird nutzt die ThalesApi gRPC?
 Die ThalesApi wird verwendet um die Sensordaten der Test Sceneie weiterzuleiten.
 Die ThalesApi gRPC verwendet das Protocol Buffers (protobuf) Datenformat, das binär kodiert ist und daher effizienter als JSON oder XML ist. Dies führt zu schnellerer Datenübertragung und geringerem Ressourcenverbrauch, was in Spielen und anderen Unity-Anwendungen wichtig ist.\\
@@ -21,81 +29,29 @@ Sobald die ThalesApi der Scene hinzugefügt wird können die Sensordaten mit dem
 %Wie wurde es nochmal genau gemacht?
 Die Sensor daten werden über den Client abgerufen.
 
-\begin{lstlisting}[caption=Sample Code Listing C++, label={lst:listing-cpp}, language=C++]
+\begin{lstlisting}[language={[Sharp]C}, caption={Client}, label={Script}]
 int main(int argc, char** argv) {
     auto consoleOutput = std::make_shared<sick::dsm::consumers::ConsoleOutputConsumer>();
     auto slaveProxy0 = std::make_shared<sick::dsm::proxies::SlaveProxy>("127.0.0.1", 5555, 6555);
     slaveProxy0->setSendImmediately(true).setMaxSlices(1).setSliceBeamCount(2200).setMtuSize(1460).setIndex(0).setIdentifier({127, 0, 0, 1, 0x15, 0xb3, 0, 0}).initialise();
-    auto slaveProxy1 = std::make_shared<sick::dsm::proxies::SlaveProxy>("127.0.0.1", 5556, 6556);
-    slaveProxy1->setSendImmediately(true).setMaxSlices(1).setSliceBeamCount(2200).setMtuSize(1460).setIndex(0).setIdentifier({127, 0, 0, 1, 0x15, 0xb4, 0, 0}).initialise();
-    auto slaveProxy2 = std::make_shared<sick::dsm::proxies::SlaveProxy>("127.0.0.1", 5557, 6557);
-    slaveProxy2->setSendImmediately(true).setMaxSlices(1).setSliceBeamCount(2200).setMtuSize(1460).setIndex(0).setIdentifier({127, 0, 0, 1, 0x15, 0xb5, 0, 0}).initialise();
-    auto slaveProxy3 = std::make_shared<sick::dsm::proxies::SlaveProxy>("127.0.0.1", 5558, 6558);
-    slaveProxy3->setSendImmediately(true).setMaxSlices(1).setSliceBeamCount(2200).setMtuSize(1460).setIndex(0).setIdentifier({127, 0, 0, 1, 0x15, 0xb6, 0, 0}).initialise();
-    std::string connectionString = "192.168.100.1:30718";
-    std::shared_ptr<grpc::Channel> channel = sick::dsm::producers::ThalesGrpcClient::getInstance(connectionString).getChannel();
-
-    std::string scannerObjectPath0 = "BasicVehicle/microScan3-maxRange-Rasterization-0";
-    std::string scannerObjectPath1 = "BasicVehicle/microScan3-maxRange-Rasterization-1";
-    std::string scannerObjectPath2 = "BasicVehicle/microScan3-maxRange-Rasterization-2";
-    std::string scannerObjectPath3 = "BasicVehicle/microScan3-maxRange-Rasterization-3";
-    auto scanner0 = std::make_shared<sick::dsm::producers::ThalesScanner>(scannerObjectPath0, channel);
-    auto scanner1 = std::make_shared<sick::dsm::producers::ThalesScanner>(scannerObjectPath1, channel);
-    auto scanner2 = std::make_shared<sick::dsm::producers::ThalesScanner>(scannerObjectPath2, channel);
-    auto scanner3 = std::make_shared<sick::dsm::producers::ThalesScanner>(scannerObjectPath3, channel);
-    scanner0->addConsumer(slaveProxy0);
-    scanner1->addConsumer(slaveProxy1);
-    scanner2->addConsumer(slaveProxy2);
-    scanner3->addConsumer(slaveProxy3);
-
-    auto recorder0 = std::make_shared<sick::dsm::consumers::FileRecorder>("recorder0.bin");
-    auto recorder1 = std::make_shared<sick::dsm::consumers::FileRecorder>("recorder1.bin");
-    auto recorder2 = std::make_shared<sick::dsm::consumers::FileRecorder>("recorder2.bin");
-    auto recorder3 = std::make_shared<sick::dsm::consumers::FileRecorder>("recorder3.bin");
-
-
+    ...
     sick::dsm::proxies::MasterProxy masterProxy0(5555, {127, 0, 0, 1, 0x15, 0xb3, 0, 0});
-    masterProxy0.addConsumer(recorder0);
-    // masterProxy0.addConsumer(consoleOutput);
-    masterProxy0.start();
-
-    sick::dsm::proxies::MasterProxy masterProxy1(5556, {127, 0, 0, 1, 0x15, 0xb4, 0, 0});
-    masterProxy1.addConsumer(recorder1);
-    // masterProxy1.addConsumer(consoleOutput);
-    masterProxy1.start();
-
-    sick::dsm::proxies::MasterProxy masterProxy2(5557, {127, 0, 0, 1, 0x15, 0xb5, 0, 0});
-    masterProxy2.addConsumer(recorder2);
-    // masterProxy2.addConsumer(consoleOutput);
-    masterProxy2.start();
-
+    ...
     sick::dsm::proxies::MasterProxy masterProxy3(5558, {127, 0, 0, 1, 0x15, 0xb6, 0, 0});
     masterProxy3.addConsumer(recorder3);
-    // masterProxy3.addConsumer(consoleOutput);
-    masterProxy3.start();
-
     scanner0->start();
-    scanner1->start();
-    scanner2->start();
-    scanner3->start();
-
+    ...
     int counter = 0;
     std::thread t1([&](){
         while (true) {
             scanner0->produce();
-            scanner1->produce();
-            scanner2->produce();
-            scanner3->produce();
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            ...
         }
     });
     std::thread t2([&](){
         while (true) {
             masterProxy0.produce();
-            masterProxy1.produce();
-            masterProxy2.produce();
-            masterProxy3.produce();
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            ...
         }
     });
     t1.join();
@@ -115,16 +71,32 @@ Es werden Scanner-Objekte (scanner0, scanner1, scanner2, scanner3) erstellt und 
 
 Recorder-Objekte (recorder0, recorder1, recorder2, recorder3) werden erstellt. Diese Objekte zeichnen Daten in Dateien auf.\\
 
-Master-Proxies (masterProxy0, masterProxy1, masterProxy2, masterProxy3) werden konfiguriert, um Daten von den Slave-Proxies zu empfangen und wahrscheinlich weitere Verarbeitung oder Aufzeichnung durchzuführen.\\
+Master-Proxies (masterProxy0, masterProxy1, masterProxy2, masterProxy3) werden konfiguriert, um Daten von den Slave-Proxies zu empfangen.\\
 
 Es werden zwei Threads (t1 und t2) erstellt, die kontinuierlich Daten von Scannern und Master-Proxies produzieren. Diese Threads laufen in einer Endlosschleife und führen die entsprechenden Produktionsschritte aus.\\
 %Es wurde eine Subsriction erstellt
 %Die Sensordaten werden abgefragt sondern sie sollen alle daten geschickt werden die aufgenommen wurden
 %Wie wurde der Client gestalltet?
 %Client mit ChatGpt kommentieren lassen
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=(\textwidth/2)]{images/Mit_Beams.PNG}
+    \caption{AGV mit sichtbaren Beams}
+    \label{fig:Mit Beams}
+\end{figure}
+
+
 
 \subsection{Übertragung von Variablen}
+%Welche Variablen?
+Mit dem Oben gezeigten Client empfängt die Sensordaten über die Thales gRPC Server. Um den Lenkwinkel und die Geschwindigkeit zu übertragen ist eine CustumAPI notwendig.
+%Was ist ein CustumAPI?
+Wenn die ThalesAPI nicht die Anforderungen erfüllt gibt es die Möglichkeit sie zuerweitern. Die generierung dieser CustumAPI findet außerhalb dieser Projektarbeit statt. Die CustumAPI kann durch die Assts in das Unity Projekt eingebunden werden.
 %Wie erstellt man eine CustumApi?
+%Wie bindet man die Custumapi in Unity ein?
+Es wird dem Objekt das CustumAPI-Script hinzugefügt und als öffentliche Variable dem Skript zugeordnet, damit es als verfügbarer Service auf dem Server erscheint.
+%Man fügt das CustumAPi Srcipt dem Objekt zu fügt das Objekt als Public variable dem Script zu damit sollte es als verfübarer Service auf dem Server erscheinen
+
 %Warum nutzt man die CustumApi?
 %Wie wird die CustumApi in Unity verwendet?
 %Wo für verwendete die CustumApi?
@@ -132,6 +104,9 @@ Es werden zwei Threads (t1 und t2) erstellt, die kontinuierlich Daten von Scanne
 
 %\section{AGVs in der virtuellen Umgebung}
 \section{Umsetzung der Fahrphysik}
+
+
+
 \subsection{Lenkung}
 %Wie funktioneriert die Lenkung mit Ackermann winkel
 Der Lenk mechanismus wird durch den Ackermannwinkel umgesetzt.
@@ -180,12 +155,66 @@ private void manuelSteering()
 \end{lstlisting}
 
 
-\subsection{Beschleunigung}
+\subsection{Kontrolle der Geschwindigkeit}
+%Einleitung
+Die Kontrolle der Geschwindigkeit in Unity-Fahrzeugsimulationen ist von entscheidender Bedeutung, um realistisches Fahrverhalten zu gewährleisten.\\
+
+%Funktionsweise der Beschleunigung
+In Unity werden die Fahrzeugbewegungen oft durch die Verwendung von Unity Wheel Colliders simuliert. Die Beschleunigung eines Fahrzeugs in Unity erfolgt im Wesentlichen durch die Anwendung eines Drehmoments auf die Unity Wheel Colliders.\\
+
+Um das Fahrzeug zu beschleunigen, wird ein Motor-Drehmoment auf die Unity Wheel Colliders angewendet. Dieses Drehmoment erzeugt eine Rotationskraft an den Rädern, die das Fahrzeug vorwärts bewegt.\\
+
+Das Motor-Drehmoment wird von den Unity Wheel Colliders aufgenommen und in eine Drehbewegung der Räder umgesetzt. Die Räder wiederum übertragen diese Drehbewegung auf den Boden, wodurch das Fahrzeug in Bewegung gesetzt wird.\\
+
+Durch die kontinuierliche Anwendung des Motor-Drehmoments erhöht sich die Geschwindigkeit des Fahrzeugs im Laufe der Zeit, solange keine Gegenkräfte wie Reibung oder Luftwiderstand wirken.\\
+
+Das Bremsen in Unity-Fahrzeugsimulationen wird ebenfalls über die Unity Wheel Colliders simuliert. Es erfolgt durch das Anwenden eines Bremsmoments auf die Räder oder Bremskomponenten.\\
+
+Beim Bremsen wird ein Bremsmoment auf die Unity Wheel Colliders ausgeübt. Dieses Moment erzeugt eine Bremskraft, die das Fahrzeug verlangsamt.\\
+
+Durch die kontinuierliche Anwendung des Bremsmoments nimmt die Geschwindigkeit des Fahrzeugs ab, bis es schließlich zum Stillstand kommt oder bis der Bremsvorgang beendet wird.\\
+
+Die Geschwindigkeitskontrolle in Unity-Fahrzeugsimulationen wird durch die gezielte Steuerung von Beschleunigung und Bremsen sowie durch die Anpassung von Parameterwerten erreicht.\\
+
+Um die Geschwindigkeit zu begrenzen, kann eine maximale Geschwindigkeitsgrenze festgelegt werden. Wenn diese Grenze erreicht ist, wird das Motor-Drehmoment reduziert oder das Bremsmoment erhöht.\\
+
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=15cm]{images/Geschwingkeit.pdf}
+    \caption{Geschwindigkeits Graph}
+    \label{fig: Geschwindigkeit}
+\end{figure}
+
+Die Geschwindigkeitskontrolle in Unity-Fahrzeugsimulationen erfordert die präzise Steuerung von Beschleunigung und Bremsen durch die Anwendung von Drehmomenten auf Unity Wheel Colliders. Die Beschleunigung erfolgt durch das Anwenden von Motor-Drehmomenten, während das Bremsen durch das Anwenden von Bremsmomenten simuliert wird. Eine genaue Geschwindigkeitskontrolle ermöglicht eine realistische Simulation von Fahrzeugbewegungen und ist entscheidend für eine authentische Spielerfahrung. Die Anpassung von Motorleistung, Bremsen und physikalischen Parametern spielt eine wichtige Rolle bei der Feinabstimmung der Geschwindigkeitskontrolle in Unity.\\
 %wie funktioniert die Beschleunigung?
+
+%Wie funktioniert die Bremse?
+
+%Wie kontrolliert man die Geschwindigkeit?
+
+%Graph einbinden
+
+
 %Diese muss im späteren verlauf verändert werden vorübergehen geht es in ordnung
 %Die beschreibung am besten so durch führen wie es in dem einem Youtube video gezeigt wurde
-\subsection{Steuerung}
+\subsection{Steuerung von Fahrzeugbewegungen durch Fahranweisungen}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=(\textwidth)]{images/AGV_bewegt_sich.PNG}
+    \caption{AGV Bewegung}
+    \label{AGV Bewegung}
+\end{figure}
+Die Steuerung von Fahrzeugbewegungen in Simulationen ist von entscheidender Bedeutung für die Schaffung von realistischen Szenarien.\\
+
+Fahranweisungen sind Anweisungen, die einem Fahrzeug in einer Computersimulation gegeben werden, um seine Bewegungen zu steuern. Diese Anweisungen können verschiedene Aspekte des Fahrverhaltens beeinflussen, einschließlich Beschleunigung, Lenkung, Bremsen und mehr. \\
+
+Fahranweisungen beginnen mit der Erfassung von Benutzereingaben oder anderen Steuersignalen. Dies können Controller-Eingaben sein.\\
+
+Die umgewandelten Anweisungen werden auf das Fahrzeug angewendet, indem die erforderlichen physikalischen Parameter, wie Motor-Drehmoment, Lenkwinkel oder Bremsmoment, entsprechend angepasst werden.\\
+
+Fahranweisungen können über einen bestimmten Zeitraum hinweg angewendet werden, um eine präzise Steuerung der Bewegungen sicherzustellen. Timer oder Zeitbegrenzungen können verwendet werden, um die Dauer von Aktionen zu bestimmen.\\
 %Wie wird die Spurr gezeichnet?
 
 %Wie wird gesteuert?
-Die Publicvariablen sollen verändert werden.
