@@ -216,3 +216,40 @@ Aufgaben für heute
 \item steuerungs script erstellen
 \item
 \end{itemize}
+
+
+\subsection{17.09}
+Schritte um die Räder umzustellen
+
+Eigenschaften des Rads 
+Damping sollte unverändert bleiben
+Suspention Distance sollte 0 sein in meinem Fall
+Spring und Damper sollte beim Default bleiben
+Der Rest sollte gleich bleiben
+
+Tipps für die Fahranweisung es könnte auch mit Deltatime umgesetzt werden 
+private void Update()
+    {
+        // Überprüfen, ob das Gaspedal gedrückt werden soll
+        if (gasTimer < gasDuration)
+        {
+            ApplyGas();
+            gasTimer += Time.deltaTime;
+        }
+
+        // Überprüfen, ob gelenkt werden soll
+        if (steerTimer < steerDuration)
+        {
+            ApplySteer();
+            steerTimer += Time.deltaTime;
+        }
+    }
+
+Zum Beispiel so
+
+
+
+
+
+
+
